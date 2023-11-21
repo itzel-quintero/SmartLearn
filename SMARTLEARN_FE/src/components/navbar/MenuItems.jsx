@@ -1,9 +1,10 @@
 import React from 'react'
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem} from "@nextui-org/react";
+import { useNavigate } from 'react-router-dom';
 
 const MenuItems = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const redirectTo =useNavigate();
   const menuItems = [
     "Profile",
     "Dashboard",
@@ -17,24 +18,29 @@ const MenuItems = () => {
     "Log Out",
   ];
   return (
-    <><Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden" />
+    <>
+    <Navbar disableAnimation isBordered>
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle />
+      </NavbarContent>
+
+      <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">SMARTLEARN</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarBrand>
+          <p className="font-bold text-inherit">SMARTLEARN </p>
+        </NavbarBrand>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
+          <Link onPress={() => redirectTo('/maestros')} color="foreground" href="#">
+            Maestros
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+          <Link href="#" aria-current="page" color="">
             Customers
           </Link>
         </NavbarItem>
@@ -44,12 +50,13 @@ const MenuItems = () => {
           </Link>
         </NavbarItem>
       </NavbarContent>
+
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button as={Link} color="warning" href="#" variant="flat">
             Sign Up
           </Button>
         </NavbarItem>
@@ -58,8 +65,10 @@ const MenuItems = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              color={index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"}
               className="w-full"
+              color={
+                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
               href="#"
               size="lg"
             >
@@ -68,7 +77,8 @@ const MenuItems = () => {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
-    </Navbar></>
+    </Navbar>
+   </>
   )
 }
 
