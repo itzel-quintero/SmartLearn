@@ -1,11 +1,11 @@
 import React from 'react'
 
-const More = () => {
+const Mas = () => {
   return (
     <div>
-        more
+        
     </div>
   )
 }
 
-export default More
+export default Mas

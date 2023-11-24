@@ -2,14 +2,14 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./views/home/Home";
 import Login from "./views/login/Login";
 import Maestros from "./views/maestros/Maestros";
-import MenuItems from "./components/navbar/MenuItems";
-import More from "./views/more/More";
+import Mas from "./views/mas/Mas";
+import Registro from "./views/registro/Registro";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <><MenuItems /><Home /></>,
+      element: <Home />,
       onError: <div>Error</div>,
     },
     {
@@ -23,8 +23,13 @@ const App = () => {
       onError: <div>Error</div>,
     },
     {
-      path: "/more",
-      element: <More/>,
+      path: "/mas",
+      element: <Mas/>,
+      onError: <div>Error</div>,
+    },
+    {
+      path: "/registro",
+      element: <Registro/>,
       onError: <div>Error</div>,
     },
   ]);

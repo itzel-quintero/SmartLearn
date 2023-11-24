@@ -1,8 +1,11 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Button, Image } from '@nextui-org/react'
+import { useNavigate } from 'react-router-dom'
+import {Navbar, Link, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Checkbox, Input} from "@nextui-org/react";
 
 const Home = () => {
   const redirectTo =useNavigate();
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
     <>
@@ -24,98 +27,82 @@ const Home = () => {
             </svg>
             <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
               <h2 className="text-5xl font-bold tracking-tight text-black sm:text-1x1">
-                SMARTLEARN
-                <br />
-                Aprendizaje Inteligente
+                Aprendizaje Inteligente.
               </h2>
               <p className="mt-6 text-lg leading-6 text-black">
-               <h9> Somos una empresa dedicada al aprendizaje, donde te ayudamos a cumplir el sueño de estudiar sin necesidad de estres, aburrimiento, y sobre todo garantizando aprendizaje :) </h9>
+               <h9> Somos una empresa dedicada al aprendizaje, donde te ayudamos a cumplir el sueño de estudiar sin necesidad de estres, aburrimiento, y sobre todo garantizando aprendizaje :). </h9>
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-                <a href="#"className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"  >
+                <a href="#" >                
+                <Button onPress={() => redirectTo('/registro')} color="primary" variant="shadow">
                   Registrarme 
+                  </Button>
                 </a>
-                <div onPress={() => redirectTo('/more')}>
                 <a href="#" className="text-sm font-semibold leading-6 text-black">
+                <Button onPress={() => redirectTo('/mas')} color="black" variant="light">
                   Leer más <span aria-hidden="true">→</span>
+                  </Button>
                 </a>
-                </div>
+               
               </div>
             </div>
-            <div className="relative mt-16 h-80 lg:mt-6">
-      <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-4">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Iniciar Sesion 
-          </h2>
-        </div>
-
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            <img
+            width={600}
+            src="../../../public/smartlearn.png"
+            alt=""
+          />
+                <Link onPress={onOpen} href="#"><p className="font-bold flex py-2 px-1 justify-between">Iniciar Sesion</p></Link>
+          <Modal 
+        isOpen={isOpen} 
+        onOpenChange={onOpenChange}
+        placement="top-center"
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
+              <ModalBody>
+                <Input
+                  autoFocus
+                  label="Email"
+                  placeholder="Enter your email"
+                  variant="bordered"
                 />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                  Password
-                </label>
-                <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
+                <Input
+                  label="Password"
+                  placeholder="Enter your password"
                   type="password"
-                  autoComplete="current-password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  variant="bordered"
                 />
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign in
-              </button>
-            </div>
-          </form>
-
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
-          </p>
-        </div>
-      </div>
-    </>
-          </div>
+                <div className="flex py-2 px-1 justify-between">
+                  <Checkbox
+                    classNames={{
+                      label: "text-small",
+                    }}
+                  >
+                    Remember me
+                  </Checkbox>
+                  <Link color="primary" href="#" size="sm">
+                    Forgot password?
+                  </Link>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="flat" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Sign in
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
           </div>
         </div>
       </div></>
   )
 }
 
-export default Home;
+export default Home
