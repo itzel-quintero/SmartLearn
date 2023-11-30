@@ -1,12 +1,16 @@
 import React from 'react'
+import { useForm } from "react-hook-form"
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const Maestros = () => {
+const Alumnos = () => {
+    const { register, handleSubmit } = useForm();
+    const [agreed, setAgreed] = useState(false)
     const redirectTo =useNavigate();
   return (
     <div>
      <form>
-     <div className="isolate bg-violet-200 px-9 py-40 sm:py-2 lg:px-80">
+     <div className="isolate bg-white-200 px-9 py-40 sm:py-2 lg:px-80">
       <div
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
         aria-hidden="true"
@@ -27,7 +31,7 @@ const Maestros = () => {
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bienvenido a SMARTLEARN </h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
-          Acabas de seleccionar la opcion Maestro, recolectaremos algunos de tus datos.
+          Acabas de seleccionar la opcion Alumno, recolectaremos algunos de tus datos.
         </p>
       </div>
       <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
@@ -94,7 +98,7 @@ const Maestros = () => {
             </label>
             <div className="mt-2.5">
               <input
-                type="date"
+                type="text"
                 name="email"
                 id="email"
                 autoComplete="email"
@@ -118,7 +122,7 @@ const Maestros = () => {
           </div>
           <div className="sm:col-span-1">
               <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
-                Nivel de estudios
+                Nivel de estudios actuales
               </label>
               <div className="mt-2">
                 <select
@@ -141,7 +145,7 @@ const Maestros = () => {
 
           <div className="sm:col-span-2">
             <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
-              Grados que te gustaria impartir 
+              Institucion Actual 
             </label>
             <div className="mt-2.5">
               <textarea
@@ -155,7 +159,7 @@ const Maestros = () => {
           </div>
         </div>
         <div className="mt-10">
-          <button onClick={() => redirectTo('/registrom')}
+          <button onClick={() => redirectTo('/registroa')}
             className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
            Registrarme
@@ -168,4 +172,4 @@ const Maestros = () => {
   )
 }
 
-export default Maestros
+export default Alumnos

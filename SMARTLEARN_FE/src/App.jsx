@@ -1,9 +1,10 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./views/home/Home";
-import Login from "./views/login/Login";
-import Maestros from "./views/maestros/Maestros";
 import Mas from "./views/mas/Mas";
-import Registro from "./views/registro/Registro";
+import Maestros from "./views/maestros/Maestros";
+import Alumnos from "./views/alumnos/Alumnos";
+import RegistroM from "./views/registrom/RegistroM";
+import RegistroA from "./views/registroA/RegistroA";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -13,8 +14,8 @@ const App = () => {
       onError: <div>Error</div>,
     },
     {
-      path: "/login",
-      element: <Login />,
+      path: "/mas",
+      element: <Mas />,
       onError: <div>Error</div>,
     },
     {
@@ -23,13 +24,18 @@ const App = () => {
       onError: <div>Error</div>,
     },
     {
-      path: "/mas",
-      element: <Mas/>,
+      path: "/alumnos",
+      element: <Alumnos />,
       onError: <div>Error</div>,
     },
     {
-      path: "/registro",
-      element: <Registro/>,
+      path: "/registrom",
+      element: <RegistroM />,
+      onError: <div>Error</div>,
+    },
+    {
+      path: "/registroa",
+      element: <RegistroA />,
       onError: <div>Error</div>,
     },
   ]);
